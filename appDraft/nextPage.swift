@@ -13,7 +13,7 @@ struct nextPage: View {
     var body: some View {
         VStack {
             Text("Welcome, \(name)")
-                .font(.largeTitle)
+                .font(.title)
                 .fontWeight(.ultraLight)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 700.0)

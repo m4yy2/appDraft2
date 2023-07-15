@@ -17,7 +17,7 @@ struct nextPage: View {
                 .fontWeight(.ultraLight)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 700.0)
-                .padding(.leading, 20.0)
+                .padding(.leading, 22.0)
         }
     }
 }

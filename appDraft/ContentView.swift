@@ -30,7 +30,7 @@ struct ContentView: View {
                         .fontWeight(.ultraLight)
                         .border(Color.gray, width: 1)
                         .padding([.top, .leading, .trailing], 20.0)
-                    NavigationLink(destination: nextPage(name: .constant(name))) {
+                    NavigationLink(destination: nextPage(name: .constant(name), selectedDate: .constant(Date()))) {
                         Text("Enter")
                             .font(.title)
                             .fontWeight(.ultraLight)

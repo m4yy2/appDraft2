@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State public var name = ""
     @State private var welcome = "Welcome, User!"
-
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -36,18 +36,19 @@ struct ContentView: View {
                             .fontWeight(.ultraLight)
                             .padding(.top)
                     }
-                    
-                    
-                    
                 }
             }
         }
     }
+    
 }
+        
+        
+        
+        struct ContentView_Previews: PreviewProvider {
+            static var previews: some View {
+                ContentView()
+            }
+        }
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}

@@ -16,7 +16,7 @@ struct thirdPage: View {
         .navigationBarBackButtonHidden(true)
         .toolbar{
                 ToolbarItem(placement: .bottomBar){
-                    NavigationLink(destination: nextPage(name: .constant(name), selectedDate: .constant(Date()))){
+                    NavigationLink(destination: EventsCalendarView(name: .constant(name), selectedDate: .constant(Date()))){
                         Image(systemName: "house")
                             .padding(.horizontal)
                     }

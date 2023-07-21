@@ -14,15 +14,22 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                Image("wave")
+                    .resizable(resizingMode: .stretch)
+                    .ignoresSafeArea()
                 Text(welcome)
                     .font(.largeTitle)
-                    .fontWeight(.ultraLight)
+                    .fontWeight(.black)
+                    .foregroundColor(Color.white)
                     .multilineTextAlignment(.leading)
                     .padding(.bottom, 220.0)
+                 
                 VStack {
-                    Text("Let's make some cents")
+                    Text("Let's make some ¢ents")
+                        .foregroundColor(Color.white)
                         .font(.title)
-                        .fontWeight(.ultraLight)
+                        .italic()
+                        .fontWeight(.regular)
                         .padding(-10.0)
                     TextField("type name here", text: $name)
                         .multilineTextAlignment(.center)
@@ -30,15 +37,17 @@ struct ContentView: View {
                         .fontWeight(.ultraLight)
                         .border(Color.gray, width: 1)
                         .padding([.top, .leading, .trailing], 20.0)
-                    NavigationLink(destination: nextPage(name: .constant(name), selectedDate: .constant(Date()))) {
+                    NavigationLink(destination: EventsCalendarView(name: .constant(name), selectedDate: .constant(Date()))) {
                         Text("Enter")
                             .font(.title)
-                            .fontWeight(.ultraLight)
+                            .fontWeight(.regular)
                             .padding(.top)
                     }
                 }
             }
+            
         }
+        
     }
     
 }
@@ -50,5 +59,6 @@ struct ContentView: View {
                 ContentView()
             }
         }
+
 
 

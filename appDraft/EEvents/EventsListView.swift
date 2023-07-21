@@ -1,21 +1,43 @@
 //
-//  sixthPage.swift
+//  EventsListView.swift
 //  appDraft
 //
-//  Created by Scholar on 7/18/23.
+//  Created by Maci Bella-Dai Tu on 7/20/23.
 //
 
-
 import SwiftUI
-import UIKit
 
-struct sixthPage: View {
+struct EventsListView: View {
     @Binding var name : String
     @Binding var selectedDate: Date
+    @EnvironmentObject var myEvents: EventStore
+    @State private var formType: EventFormType?
     var body: some View {
-//        storyboardview().edgesIgnoringSafeArea(.all)
         NavigationStack {
-            Divider()
+            List {
+                ForEach(myEvents.events.sorted {$0.date < $1.date }) { event in
+                    ListViewRow(event: event, formType: $formType)
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            myEvents.delete(event)
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Calendar Events")
+            .sheet(item: $formType) { $0 }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        formType = .new
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .imageScale(.large)
+                    }
+                }
+            }
             .navigationBarBackButtonHidden(true)
             .toolbar{
                     ToolbarItem(placement: .bottomBar){
@@ -26,7 +48,7 @@ struct sixthPage: View {
                     }
                     ToolbarItem(placement: .bottomBar){
                         NavigationLink(destination: EventsListView(name: .constant(name), selectedDate: .constant(Date()))){
-                            Image(systemName: "list.bullet.clipboard")
+                            Image(systemName: "list.bullet.clipboard.fill")
                                 .padding(.horizontal)
                         }
                     }
@@ -44,27 +66,18 @@ struct sixthPage: View {
                     }
                     ToolbarItem(placement: .bottomBar){
                         NavigationLink(destination: sixthPage(name: .constant(name), selectedDate: .constant(Date()))){
-                            Image(systemName: "lightbulb.fill")
+                            Image(systemName: "lightbulb")
                                 .padding(.horizontal)
                     }
                 }
              }
-            }
+        }
     }
 }
 
-//struct sixthPage_Previews: PreviewProvider {
-//    static var previews: some View {
-//        sixthPage(name: .constant("User") , selectedDate: .constant((Date())))
-//    }
-//}
-//struct storyboardview: UIViewControllerRepresentable{
-//    func makeUIViewController(context: Context) ->  UIViewController {
-//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let controller = storyboard.instantiateViewController(identifier: "Home")
-//        return controller
-//    }
-//    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-//         
-//    }
-//    }
+struct EventsListView_Previews: PreviewProvider {
+    static var previews: some View {
+        EventsListView(name: .constant("User") , selectedDate: .constant((Date())))
+            .environmentObject(EventStore(preview: true))
+    }
+}

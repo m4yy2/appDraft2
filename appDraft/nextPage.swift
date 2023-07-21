@@ -4,7 +4,7 @@
 //
 //  Created by Maci Bella-Dai Tu on 7/13/23.
 //
-
+/*
 import SwiftUI
 
 struct nextPage: View {
@@ -23,7 +23,7 @@ struct nextPage: View {
             }
             
             .padding(.bottom, -10.0)
-            //<<<<<<< Updated upstream
+
             .padding(.leading, 20.0)
             Text(selectedDate.formatted(date: .abbreviated, time: .omitted))
                 .font(.title2)
@@ -33,17 +33,21 @@ struct nextPage: View {
                 .padding()
                 .animation(.spring(), value: selectedDate)
                 .frame(width: 375 , alignment: .leading)
-            
-            Divider().frame(height: 1)
-            DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
-                .padding(.horizontal)
-                .padding(.bottom,250.0)
-                .datePickerStyle(.graphical)
+            NavigationLink(destination: EventsListView(name: .constant(name), selectedDate: .constant(Date()))){
+                Image(systemName: "plus.app")
+                }
+                    .offset(y: -350)
+                    .frame(width: 375 , alignment: .trailing)
+//            Divider().frame(height: 1)
+//            DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
+//                .padding(.horizontal)
+//                .padding(.bottom,250.0)
+//                .datePickerStyle(.graphical)
             Divider()
                 .navigationBarBackButtonHidden(true)
                 .toolbar{
                     ToolbarItem(placement: .bottomBar){
-                        NavigationLink(destination: nextPage(name: .constant(name), selectedDate: .constant(Date()))){
+                        NavigationLink(destination: EventsCalendarView(name: .constant(name), selectedDate: .constant(Date()))){
                             Image(systemName: "house")
                                 .padding(.horizontal)
                         }
@@ -81,4 +85,4 @@ struct nextPage: View {
             }
         }
     }
-
+ /**/*/
